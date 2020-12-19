@@ -1,0 +1,27 @@
+<template>
+<div>
+  <p>いいね({{number}})</p>
+  <button @click="increment">buttonz1</button>
+</div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      number: 20
+	};
+  },
+  methods: {
+		increment() {
+			this.number += 1
+		}
+	}
+};
+</script>
+
+<style scoped>
+  div {
+    border: 1px solid red;
+  }
+</style>
