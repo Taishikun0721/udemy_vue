@@ -1,14 +1,13 @@
 <template>
 <div>
   <p>いいね({{ halfNumber }})</p>
-  <p>いいね{{ nextNumber }}</p>
   <button @click="increment">button1</button>
 </div>
 </template>
 
 <script>
 export default {
-  props: ["totalNumber", "nextNumber"],
+  props: ["totalNumber"],
   computed: {
     halfNumber() {
       return this.totalNumber / 2

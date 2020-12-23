@@ -1,25 +1,17 @@
 <template>
 <div>
+  <Home></Home>
+  <LikeHeader :header-text="title"></LikeHeader>
+  <LikeNumber :total-number="totalNumber" @increment-click="totalNumber = $event"></LikeNumber>
   <h2>{{ eventData.maxNumber }}</h2>
   <input type="text" v-model.lazy.number="eventData.maxNumber">
   <button @click="incrementNumber">増やす</button>
-  <h2>{{ eventData.title }}</h2>
-  <input type="text" v-model="eventData.title">
-  <pre>{{ eventData.host }}</pre>
-  <input type="text" v-model.trim="eventData.host">
-  <label for="detail">イベントの内容</label>
-  <pre>{{ eventData.detail }}</pre>
-  <textarea id="detail" cols="30" rows="10" v-model="eventData.detail"></textarea>
-  <input type="checkbox" id="isPrivate" v-model="eventData.isPrivate">
-  <h2>{{ eventData.isPrivate }}</h2>
-  <h2>参加条件</h2>
-  <input type="checkbox" id="10" value="10代" v-model="eventData.target">
-  <label for="10">10代</label>
-  <input type="checkbox" id="20" value="20代" v-model="eventData.target">
-  <label for="20">20代</label>
-  <input type="checkbox" id="30" value="30代" v-model="eventData.target">
-  <label for="30">30代</label>
-  <h1>{{ eventData.target }}</h1>
+  <EventTitle v-model="eventData.title"></EventTitle>
+  <EventHost v-model="eventData.host"></EventHost>
+  <EventDetail v-model="eventData.detail"></EventDetail>
+  <EventIsPrivate v-model="eventData.isPrivate"></EventIsPrivate>
+
+
   <input type="radio" id="free" value="無料" v-model="eventData.price">
   <label for="free"> 無料だよ</label>
   <input type="radio" id="payd" value="有料" v-model="eventData.price">
@@ -32,10 +24,19 @@
 </template>
 
 <script>
+import LikeHeader from './components/LikeHeader.vue'
+import LikeNumber from './components/LikeNumber.vue'
+import EventTitle from './components/EventTitle.vue'
+import EventHost from './components/EventHost.vue'
+import EventDetail from './components/EventDetail.vue'
+import EventIsPrivate from './components/EventIsPrivete'
+import Home from './components/Home.vue'
 export default {
   data() {
     return {
       locations: ['東京', '大阪', '福岡'],
+      title: "これはブログのタイトルです。",
+      totalNumber: 1000,
       eventData: {
         maxNumber: 100,
         title: "This is a title",
@@ -47,6 +48,15 @@ export default {
         locatios: '東京'
       }
     }
+  },
+  components: {
+    EventTitle,
+    EventHost,
+    EventDetail,
+    EventIsPrivate,
+    LikeHeader,
+    LikeNumber,
+    Home,
   },
   methods: {
     incrementNumber() {
